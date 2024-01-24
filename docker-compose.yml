@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+    postgres:
+        image: postgres:14.4
+        env_file:
+          - ./.env
+        environment: 
+          - POSTGRES_USER=${DATABASE_USER}
+          - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+          - POSTGRES_DB=${DATABASE_NAME}
+        container_name: x-db-${ENV}
+        volumes:
+          - ./pgdata:/var/lib/postgresql/data
+        ports:
+          - '${DATABASE_HOST_PORT}:5432'
+        networks:
+          - x_net
+    redis:
+        image: 'redis:alpine'
+        volumes:
+            - ./redis-data:/data
+        ports:
+            - 16379:6379
+        networks:
+            - x_net
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            retries: 3
+            timeout: 5s
+    rabbitmq:
+        image: rabbitmq:management
+        container_name: rabbitmq-x
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+
+networks:
+    x_net:
+        driver: bridge

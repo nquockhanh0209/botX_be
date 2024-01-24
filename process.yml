@@ -1,0 +1,7 @@
+apps:
+  - script   : './dist/main.js'
+    name     : 'api'
+    min_uptime: 10000
+    max_restarts: 15
+    restart_delay: 2000
+    kill_timeout: 3000

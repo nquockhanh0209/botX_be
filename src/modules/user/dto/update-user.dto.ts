@@ -1,0 +1,104 @@
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Length,
+  Matches,
+} from "class-validator";
+
+import { ApiProperty } from "@nestjs/swagger";
+import { Property } from "src/utils/general.util";
+import { IsPhoneNumber } from "src/validators/validate-phone-number";
+
+export class UpdateUserDto {
+  @IsString()
+  @IsPhoneNumber({
+    message: "Phone number is not in correct format",
+  })
+  @IsOptional()
+  @ApiProperty({
+    default: "0x6777888",
+    required: false,
+  })
+  phoneNumber: string;
+
+  @IsString()
+  @IsEmail()
+  @IsOptional()
+  @ApiProperty({
+    default: "abc@domain.com",
+    required: false,
+  })
+  email: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiProperty({
+    default: "abc",
+    required: false,
+  })
+  username: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiProperty({
+    default: "TP bank",
+    required: false,
+  })
+  bankName: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiProperty({
+    default: "Hello",
+    required: false,
+  })
+  accountName: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiProperty({
+    default: "09662221111xxxx",
+    required: false,
+  })
+  accountNumber: string;
+
+
+  @IsNumber()
+  @IsOptional()
+  @ApiProperty({
+    default: 1000,
+    required: false,
+  })
+  balanceSys: number;
+
+  @IsNumber()
+  @IsOptional()
+  @ApiProperty({
+    default: 1000,
+    required: false,
+  })
+  balanceAffi: number;
+
+  @IsOptional()
+  @Property()
+  @IsString()
+  //Chứa ít nhất 7 ký tự có số và chữ
+  // @Matches(/^.*(?=.{7})(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9!@#$%]+$/)
+  @ApiProperty({
+    description: "Password",
+    default: "ExamplePasswrod",
+  })
+  password: string;
+
+  @IsOptional()
+  @Property()
+  @IsString()
+  @ApiProperty({
+    description: "avatar user",
+    default: "http://link-avatar",
+  })
+  avatarUrl: string;
+}

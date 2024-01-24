@@ -1,0 +1,31 @@
+{
+    "debug.onTaskErrors": "showErrors",
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "editor.suggestSelection": "first",
+    "editor.formatOnSave": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    },
+    "editor.codeActionsOnSave": [],
+    "explorer.sortOrder": "modified",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#424142"
+        },
+        100, // <- a ruler in the default color or as customized (with "editorRuler.foreground") at column 100
+        {
+            "column": 120,
+            "color": "#ff0000"
+        }
+    ]
+}
